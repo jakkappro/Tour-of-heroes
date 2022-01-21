@@ -4,13 +4,4 @@
         <span class="badge">{{item.id}}</span>{{item.name}}
     </li>
 </ul>
-
-<div *ngIf="selectedItem">
-    <h2>{{selectedItem.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{selectedItem.id}}</div>
-    <div>
-      <label for="item-name">Item name: </label>
-      <input id="item-name" [(ngModel)]="selectedItem.name" placeholder="name">
-    </div>
-    <div><span>price: </span>{{selectedItem.price}}</div>
-</div>
+<app-item-detail [item]="selectedItem"></app-item-detail>
