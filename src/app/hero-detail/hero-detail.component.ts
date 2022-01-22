@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { HeroService } from '../hero.service';
@@ -29,7 +29,6 @@ export class HeroDetailComponent implements OnInit {
 
   getItem(): void {
     this.item = this.hero!.item;
-    console.log(this.item);
   }
 
   goBack(): void {
@@ -39,5 +38,12 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getHero();
     this.getItem();
+  }
+
+  sellItem(i: Item): void {
+    this.hero!.item = undefined;
+    this.hero!.money += i.price;
+    this.heroService.updateHero(this.hero!);
+    this.location.back();
   }
 }

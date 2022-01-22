@@ -10,6 +10,19 @@ import { Item } from './item';
 })
 export class HeroService {
 
+  updateHero(newHero: Hero) {
+    const oldHero = HEROES.find(h => h.id === newHero.id);
+    if (oldHero === undefined) {
+      this.messageService.add(`HeroService: hero with id=${newHero.id} not found`);
+      return;
+    }
+
+    oldHero.name = newHero.name;
+    oldHero.money = newHero.money;
+    oldHero.item = newHero.item;
+    this.messageService.add(`HeroService: updated hero id=${newHero.id}`);
+  }
+
   getHeroes(): Observable<Hero[]> {
     const heroes = of(HEROES);
     this.messageService.add("Hero service: fetched new hero");

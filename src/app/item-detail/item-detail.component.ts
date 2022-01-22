@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Item } from '../item';
 import { ItemService } from '../item.service';
 import { Location } from '@angular/common';
-import { Hero } from '../hero';
 
 @Component({
   selector: 'app-item-detail',
@@ -14,7 +13,7 @@ export class ItemDetailComponent implements OnInit {
 
   @Input() item?: Item;
   @Input() inHeroView?: boolean;
-  @Input() hero?: Hero;
+  @Output() sellItem = new  EventEmitter<Item>();
 
   constructor(    
     private route: ActivatedRoute,
@@ -38,9 +37,9 @@ export class ItemDetailComponent implements OnInit {
   }
 
   sell(): void {
-    this.hero!.money += this.item!.price;
-    this.hero!.item = undefined;
     this.item!.owner = "";
+    this.sellItem.emit(this.item!);
+    this.itemService.updateItem(this.item!);
   }
 
 }

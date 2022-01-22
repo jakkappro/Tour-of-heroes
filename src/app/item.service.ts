@@ -9,6 +9,18 @@ import { MessageService } from './message.service';
   providedIn: 'root'
 })
 export class ItemService {
+  updateItem(i: Item) {
+    const oldItem = ITEMS.find(item => item.id === i.id);
+    if (oldItem === undefined) {
+      this.messageService.add(`ItemService: item with id=${i.id} not found`);
+      return;
+    }
+
+    oldItem.name = i.name;
+    oldItem.price = i.price;
+    oldItem.owner = i.owner;
+    this.messageService.add(`ItemService: updated item id=${i.id}`);
+  }
 
   getItems(): Observable<Item[]> {
     const items = of(ITEMS);
