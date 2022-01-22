@@ -2,7 +2,7 @@
 
     <h2>{{hero.name | uppercase}} Details</h2>
     <div><span>id: </span>{{hero.id}}</div>
-    <div *ngIf="item"><span>item: </span>{{item.name}}</div>
+    <div *ngIf="item"><app-item-detail [item]="item" [inHeroView]="true" [hero]="hero"></app-item-detail></div>
     <div>
       <label for="hero-name">Hero name: </label>
       <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">

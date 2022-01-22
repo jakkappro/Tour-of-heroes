@@ -6,5 +6,6 @@
       <input id="item-name" [(ngModel)]="item.name" placeholder="name">
     </div>
     <div><span>price: </span>{{item.price}}</div>
-    <button (click)="goBack()">go back</button>
+    <div *ngIf="inHeroView===false"><button (click)="goBack()">go back</button></div>
+    <div *ngIf="inHeroView===true"><button (click)="sell()">sell</button></div>
 </div>

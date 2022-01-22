@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Item } from '../item';
 import { ItemService } from '../item.service';
 import { Location } from '@angular/common';
+import { Hero } from '../hero';
 
 @Component({
   selector: 'app-item-detail',
@@ -11,7 +12,9 @@ import { Location } from '@angular/common';
 })
 export class ItemDetailComponent implements OnInit {
 
-  item?: Item;
+  @Input() item?: Item;
+  @Input() inHeroView?: boolean;
+  @Input() hero?: Hero;
 
   constructor(    
     private route: ActivatedRoute,
@@ -21,6 +24,7 @@ export class ItemDetailComponent implements OnInit {
   getItem(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.itemService.getItem(id).subscribe(item => this.item = item);
+    this.inHeroView = false;
   }
 
   goBack(): void {
@@ -28,7 +32,15 @@ export class ItemDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getItem();
+    if (this.item === undefined) {
+      this.getItem();
+    }
+  }
+
+  sell(): void {
+    this.hero!.money += this.item!.price;
+    this.hero!.item = undefined;
+    this.item!.owner = "";
   }
 
 }
