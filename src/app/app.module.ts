@@ -8,6 +8,9 @@ import { ItemsComponent } from './items/items.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { MessagesComponent } from './messages/messages.component';
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ShopComponent } from './shop/shop.component';
 
 
 @NgModule({
@@ -17,11 +20,14 @@ import { MessagesComponent } from './messages/messages.component';
     ItemsComponent,
     HeroDetailComponent,
     ItemDetailComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

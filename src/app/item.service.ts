@@ -16,6 +16,12 @@ export class ItemService {
     return items;
   } 
 
+  getItem(id: number): Observable<Item> {
+    const item = of(ITEMS.find(item => item.id === id)!);
+    this.messageService.add(`Item service: fetched item id=${id}`);
+    return item;
+  }
+
   constructor(private messageService: MessageService) { }
 }
 
